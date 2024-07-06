@@ -67,7 +67,7 @@ namespace MovieStore.Repository.DbSeed
                     Description = "A Civil War veteran agrees to deliver a girl, taken by the Kiowa people years ago, to her aunt and uncle, against her will. They travel hundreds of miles and face grave dangers as they search for a place that either can call home.",
                     Price = GetRandomPrice(),
                     ArticleTypeId = 4,
-                    Image = "/assets/products/dieHardd.jfif",
+                    Image = "/assets/products/theVanished.jfif",
                     Tags = ""
                 },
                 new Article()
@@ -76,7 +76,7 @@ namespace MovieStore.Repository.DbSeed
                     Description = "This film follows New York City police detective John McClane who is caught up in a terrorist takeover of a Los Angeles skyscraper while visiting his estranged wife.",
                     Price = GetRandomPrice(),
                     ArticleTypeId = 4,
-                    Image = "/assets/products/theVanished.jfif",
+                    Image = "/assets/products/dieHardd.jfif",
                     Tags = ""
                 },
                 new Article()

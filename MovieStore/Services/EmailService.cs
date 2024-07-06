@@ -7,18 +7,9 @@ namespace MovieStore.Services
 {
     public class EmailService : IEmailService
     {
-        // TODO: Zameniti domen i adresu za SMTP
-        //private const string Host = "smtp.office365.com";
-        //private const int Port = 587;
-        //private const string Sender = "test@iot-test.online";
-        //private const string Password = "Secret123$";
-
         private const string Host = "localhost";
         private const int Port = 1025;
-        private const string Sender = "dunja-diplomski-rad@test.com";
-        //private const string Password = "w2gqKGjNz1rAHIQs";
-
-
+        private const string Sender = "admin@mailhog.local";
 
         public void SendEmail(string Address, string Subject, string Content)
         {

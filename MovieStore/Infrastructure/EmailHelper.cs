@@ -15,12 +15,13 @@ namespace MovieStore.Infrastructure
 
             foreach(var line in order.Lines)
             {
-                OrderTemplate += $"{line.Article.Name} - {line.Article.ArticleType.Name} - {line.Quantity} - {line.Quantity * line.Article.Price} <br>";
+                OrderTemplate += string.Format("{0} - {1} - {2} - {3:C} <br>",
+                    line.Article.Name, line.Article.ArticleType.Name, line.Quantity, line.Quantity * line.Article.Price);
             }
 
             var total = order.Lines.Select(x => x.Quantity * x.Article.Price).Sum();
 
-            OrderTemplate += $"Total: {total}";
+            OrderTemplate += string.Format("Total: {0:C}", total);
 
             return OrderTemplate;
         }

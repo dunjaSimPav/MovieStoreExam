@@ -8,6 +8,7 @@ using System.Security.Claims;
 using MovieStore.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using MovieStore.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace MovieStore.Controllers
 {
@@ -157,11 +158,18 @@ namespace MovieStore.Controllers
 
                 var savedOrder = repository.SaveOrder(order);
                 cart.Clear();
+                
+                order = repository.Orders
+                    .Include(x => x.Lines)
+                        .ThenInclude(x => x.Article)
+                            .ThenInclude(x => x.ArticleType)
+                    .AsNoTracking()
+                    .FirstOrDefault(x => x.OrderId == savedOrder.OrderId);
 
-                var content = EmailHelper.PrepareOrderEmail(savedOrder);
+                var content = EmailHelper.PrepareOrderEmail(order);
 
-                emailService.SendEmail(savedOrder.Email, $"New Order - {savedOrder.Name} - {savedOrder.Email}!", content);
-                return RedirectToAction("Completed", "Order", new { orderId = savedOrder.OrderId});
+                emailService.SendEmail(order.Email, $"New Order - {order.Name} - {order.Email}!", content);
+                return RedirectToAction("Completed", "Order", new { orderId = order.OrderId});
             }
             else
                 return View();
